@@ -1,0 +1,288 @@
+div.contents {
+	margin-top: 10px;
+	width: 92%;
+	z-index: 1;
+}
+
+div.picture-row {
+	align-items: stretch;
+}
+
+div.character-card {
+	float: left;
+	width: 40%;
+	margin-top: 20px;
+}
+
+div.picture-card {
+	float: left;
+	width: 40%;
+	padding-right: 20px;
+}
+
+div.speech-sign-card {
+	float: left;
+	width: 25%;
+	padding-right: 15px;
+	text-align: right;
+}
+
+div.speech-check-card {
+	float: left;
+	width: 75%;
+}
+
+/* Sidebar */
+div.sidebar {
+	margin-top: -4px;
+	float: left;
+	width: 20%;
+	padding-left: 8px;
+}
+
+/* Style the list inside the menu */
+div.sidebar ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+div.word-card {
+	margin-left: 6px;
+}
+
+p.word-category {
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+	color: rgb(77, 77, 77);
+	cursor: pointer;
+	margin-bottom: 6px;
+}
+
+ul.word {
+	font-family: SimSun;
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+li:hover {
+	background-color: yellow;
+	cursor: pointer;
+}
+
+/* Clear floats after the columns */
+.picture-row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/** the contents styles */
+.character {
+	cursor: pointer;
+}
+
+.chinese {
+	font-family: KaiTi;
+	font-size: 36px;
+	color: darkgreen;
+	cursor: pointer;
+}
+
+.english {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 32px;
+	font-weight: bold;
+	margin-left: 64px;
+	color: darkgreen;
+}
+
+.pinyin {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 18px;
+	color: darkgreen;
+}
+
+.phrase {
+	font-family: KaiTi;
+	font-size: 24px;
+	color: darkgreen;
+	cursor: pointer;
+}
+
+.sentence {
+	font-family: KaiTi;
+	font-size: 18px;
+	color: darkgreen;
+	cursor: pointer;
+}
+
+.speaker {
+	font-size: 20px;
+	color: darkgreen;
+	margin-left: 12px;
+	cursor: pointer;
+}
+
+.mandarin {
+	font-size: 18px;
+	color: darkblue;
+	margin-left: 12px;
+	cursor: pointer;
+}
+
+.cantonese {
+	font-size: 20px;
+	color: darkgreen;
+	margin-left: 12px;
+	cursor: pointer;
+}
+
+.recording {
+	height: 100px;
+	cursor: pointer;
+}
+
+.picture {
+	width: 100%;
+	cursor: pointer;
+}
+
+.picture-default {
+	margin-top: 20%;
+	margin-left: 20%;
+	width: 60%;
+	cursor: pointer;
+}
+
+.error-message {
+	margin-top: 20px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 16px;
+	color: brown;
+	display: none;
+}
+
+.no-show {
+	display: none;
+}
+
+.speech-check {
+	width: 80%;
+	border: 2px solid lightgray;
+	border-radius: 15px;
+	min-height: 96px;
+	padding: 4px;
+}
+
+.speech-check:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.break-line {
+	display: inline;
+}
+
+.hamburger {
+	display: none;
+}
+
+/* @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) { */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+	div.picture-row {
+		align-items: stretch;
+	}
+
+	div.contents {
+		width: 100%;
+	}
+
+	div.character-card {
+		float: left;
+		width: 48%;
+		margin-right: 2%;
+	}
+
+	div.picture-card {
+		float: left;
+		width: 48%;
+	}
+
+	div.word-card {
+		margin-left: 16px;
+	}
+
+	.english {
+		font-family: 'Times New Roman', Times, serif;
+		font-size: 32px;
+		font-weight: bold;
+		margin-left: 16px;
+		color: darkgreen;
+	}
+
+	div.speech-sign-card {
+		float: left;
+		width: 40%;
+	}
+
+	div.speech-check-card {
+		float: left;
+		width: 60%;
+	}
+
+	.speech-check {
+		width: 98%;
+		border: 2px solid lightgray;
+		border-radius: 15px;
+		min-height: 84px;
+		padding: 4px;
+	}
+
+	.recording {
+		height: 80px;
+		float: right;
+		cursor: pointer;
+	}
+
+	.break-line::before {
+		content: "\A";
+		/* \A represents a line break */
+		white-space: pre;
+	}
+
+	/* Sidebar */
+	div.sidebar {
+		display: none;
+		position: absolute;
+		top: 46px;
+		left: 86px;
+		background-color: white;
+		box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+		border-radius: 5px;
+		width: 200px;
+	}
+
+	div.sidebar li:last-child {
+		border-bottom: none;
+	}
+
+	ul.word {
+		font-family: SimSun;
+		font-size: 12px;
+		/* line-height: 1.6; */
+	}
+
+	/* Hamburger Button */
+	.hamburger {
+		position: absolute;
+		font-size: 16px;
+		background: none;
+		display: block;
+		border: none;
+		top: 24px;
+		left: 54px;
+	}
+}

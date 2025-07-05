@@ -1,0 +1,152 @@
+<!-- The main contents section -->
+<div id='character-header'>
+    <!-- <img class="binner" src="assets/images/site/banner.jpg" /> -->
+    <p class="menu-bar">
+        <span id='category-btn' class="menu-btn" (mouseover)="showMenuRow('category-row')">🗃️ Categories</span>
+        <span id='usage-btn' class="menu-btn" (mouseover)="showMenuRow('usage-row')" (mouseleave)="hideMenuRows()">🙋‍♂️
+            Usage</span>
+        <a class="menu-btn" href="/practice" title="Go to Practice"><span
+                class="fa-solid fa-eye speaker-color-green"></span> Practice</a>
+        <a class="menu-btn" href="#" title="Back to Home">🏠 Home</a>
+    </p>
+    <div id='word-search' class="search-word">
+        <input type="text" id="search-word" name="word" (keypress)="enterKeyPressed($event)">
+        <span class='search' (click)="searchWord()">🔍</span>
+        <p id="search-error" class="search-error"></p>
+    </div>
+
+    <!-- The category selections -->
+    <div class="category-box">
+        <table id='category-row' class="category">
+            @for (row of categoryRows; track row) {
+            <tr>
+                @for (category of row; track category) {
+                <td [id]="category.id" class="clickable">
+                    <img [src]="category.icon" class="category-icon" alt="categry.id">
+                    <span (click)="changeCategory(category)">{{category.chinese}} - {{category.id}}</span>
+                </td>
+                }
+            </tr>
+            }
+        </table>
+    </div>
+
+    <!-- The usage -->
+    <ul id='usage-row' class="usage">
+        <li>🏠 home - back to the first page</li>
+        <li>🗃️ categories - select a category</li>
+        <li>🖨️ cards - print cards to PDF</li>
+        <li><span class="fa-solid fa-computer-mouse mouse-color"></span> character - redraw</li>
+        <li><span class="fa-solid fa-computer-mouse mouse-color"></span> picture - show/hide</li>
+        <li><span class="fa-solid fa-computer-mouse mouse-color"></span> word(s) - talk to App</li>
+        <li><span class="fa-solid fa-volume-high speaker-color-green"></span> - speak Mandarin</li>
+        <li><span class="fa-solid fa-volume-low speaker-color-blue"></span> - speak Cantonese</li>
+        <li><span class="fa-solid fa-play speaker-color-green"></span> - speak English</li>
+    </ul>
+
+    <!-- The hamburger sidebar for mobile devices -->
+    <button id="hamburger" class="hamburger" (click)="toggleMenu()">☰</button>
+
+</div>
+
+<div id='contents' class="contents">
+    <div class="picture-row">
+        <div id='character-card' class="character-card">
+            <p>
+                <span id='character' class='character' (click)="draw()" title="Click to redraw the character"></span>
+            </p>
+            <p>
+                <span id='english' class='english'>{{getEnglish()}}</span>
+                <span class="fa-solid fa-play speaker" title="Speak English" (click)="speakEnglish('en-US')"></span>
+            </p>
+        </div>
+
+        <div id='picture-card' class="picture-card">
+            <p>
+                <img #pictureDefault id='pictureDefault' [src]="getDefaultImage()" class="picture-default no-show"
+                    (click)="flipPicture()"  alt="default"/>
+                <img #picture id='picture' [src]="getCharImage()" class="picture no-show" (click)="flipPicture()" alt="char image"/>
+            </p>
+        </div>
+
+        <div id='sidebar' class="sidebar">
+            <div id="category-words">
+                <p id="word-category" class="word-category">
+                    <img [src]="toc.image" class="category-icon" /> {{ toc.category }}
+                </p>
+                <ul id="word-list" class="word">
+                    @for (word of toc.words; track word.id) {
+                    <li [id]="word.id" (click)="changeWord(word)">{{ word.id }}</li>
+                    } @empty {
+                    <li>This category doesn't have any character.</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- The word card for pinyin, phrases and sentence -->
+    <div id='word-card' class='word-card'>
+        <p>
+            <span id='chinese' #chinese class="chinese" (click)="speechCheck(chinese.textContent!)"
+                title="Talk to App">{{getChinese()}}</span>&nbsp;
+            【<span id='pinyin' #pinyin class="pinyin">{{getPinyin()}}</span>】
+            <span class="fa-solid fa-volume-high mandarin" title="Speak Mandarin"
+                (click)="speakChinese('zh-CN')"></span>
+            <span class="fa-solid fa-volume-low cantonese" title="Speak Cantonese"
+                (click)="speakChinese('yue-HK')"></span>
+            <span style='margin-right:40px'></span>
+
+            <span id='phrase' #phrase class="phrase break-line" title="Talk to App"
+                (click)="speechCheck(phrase.textContent!)">{{getPhrase1()}}</span>
+            <span class="fa-solid fa-volume-high mandarin" title="Speak Mandarin"
+                (click)="speakPhrase1('zh-CN')"></span>
+            <span class="fa-solid fa-volume-low cantonese" title="Speak Cantonese"
+                (click)="speakPhrase1('yue-HK')"></span>
+            <span style='margin-right:40px'> </span>
+
+            <span id='sentence' #sentence class="sentence break-line" title="Talk to App"
+                (click)="speechCheck(sentence.textContent!)">{{getSentence()}}</span>
+            <span class="fa-solid fa-volume-high mandarin" title="Speak Mandarin"
+                (click)="speakSentence('zh-CN')"></span>
+            <span class="fa-solid fa-volume-low cantonese" title="Speak Cantonese"
+                (click)="speakSentence('yue-HK')"></span>
+        </p>
+    </div>
+
+    <!-- This element is for getting voice and check pronunciation -->
+    <div #sttCheck id='speech-check' class="speech-check no-show">
+        <div id='speech-sign-card' class='speech-sign-card' (click)="clearSpeechCheck()">
+            <img id='recording' class="recording" title='recording' [src]="getSttImage()" alt="recording" />
+        </div>
+        <div #recognization id='recognization' class='speech-check-card sentence no-show'>
+            <span id="input-text" class="sentence">{{ getSttText() }}</span><br>
+            <span id="input-pinyin" class="pinyin">{{ getSttPinyin() }}</span>
+            <p id="rec-error" class='error-message'>{{ getSttError() }}</p>
+        </div>
+    </div>
+
+    <!-- This is for the error messages -->
+    <div id='error-message' class="error-message" onclick="Speaker.showError('')"
+        title="Click to hide the error message">{{getErrorMessage()}}
+    </div>
+
+    <!-- The category selector for mobile -->
+    <table id='mobile-category-row' class="category">
+        <tbody>
+            @for (row of categoryRows; track row) {
+            <tr>
+                @for (category of row; track category) {
+                <td [id]="category.id" class="clickable">
+                    <img [src]="category.icon" class="category-icon" alt="categry.id">
+                    <span (click)="changeCategory(category)">{{category.id}}</span>
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- This is for generating some image dynamically -->
+    <canvas id="textCanvas" class="card-body no-show"></canvas>
+</div>

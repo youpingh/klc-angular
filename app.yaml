@@ -1,0 +1,15 @@
+runtime: python313
+service: default
+
+handlers:
+- url: /(.*\.(html|gif|png|jpg|less|json|css|js|ico|svg|webp)(|\.map))$
+  static_files: dist/klc-angular/browser/\1
+  upload: dist/klc-angular/browser/(.*)(|\.map)
+
+- url: /(.*)
+  static_files: dist/klc-angular/browser/index.html
+  upload: dist/klc-angular/browser/index.html
+
+automatic_scaling:
+  min_instances: 1 # Optional: minimum number of instances to keep running
+  max_instances: 5 # Set your desired maximum number of instances

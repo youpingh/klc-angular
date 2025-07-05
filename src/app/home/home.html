@@ -1,0 +1,23 @@
+<div id='home-menu' class="index-row">
+    <div id='picture1' class="picture-col">
+        <a routerLink="/character"><img src="assets/images/site/character.png" class="picture" alt="character" /></a>
+        <p class="index-title">
+            <span class='chinese-title'>识字</span> <span class='english-title'>- Characters</span>
+        </p>
+    </div>
+
+    <div id='picture2' class="picture-col">
+        <a routerLink="/practice"><img src="assets/images/site/practice.jpg" class="picture" alt="practice" /></a>
+        <p class="index-title">
+            <span class='chinese-title'>练习</span> <span class='english-title'>- Practice</span>
+        </p>
+    </div>
+</div>
+
+@if (!isMobile()) {
+<footer>
+    <img src="assets/images/site/character.png" height="20px" /><a routerLink="/character" alt="character"> Character</a>
+    <img src="assets/images/site/practice.jpg" height="20px" /><a routerLink="/practice" alt="practice"> Practice</a>
+    🖨️<a routerLink="/print"> Print</a>
+</footer>
+}

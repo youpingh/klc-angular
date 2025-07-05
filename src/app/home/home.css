@@ -1,0 +1,58 @@
+div.index-row {
+	width: 80%;
+	margin-left: 6%;
+	padding-top: 6%;
+	align-items: stretch;
+}
+
+div.picture-col {
+	float: left;
+	width: 46%;
+	padding: 2%;
+}
+
+.picture {
+	display: block;
+	width: 78%;
+	margin: auto;
+	cursor: pointer;
+}
+
+.index-title {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.chinese-title {
+	font-family: KaiTi;
+	font-size: 36px;
+	color: darkgreen;
+}
+
+.english-title {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 32px;
+	color: darkgreen;
+}
+
+footer {
+	width: 68%;
+	height: 50px;
+	background-color: rgb(111, 111, 111);
+	text-align: center;
+	position: fixed;
+	padding-top: 14px;
+	bottom: 10px;
+}
+
+footer a {
+	margin-right: 8rem;
+	color: white;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+	div.index-row {
+		width: 98%;
+		align-items: stretch;
+	}
+}

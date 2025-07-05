@@ -1,0 +1,101 @@
+<!-- The main contents section -->
+<div id='character-header'>
+    <p class="menu-bar">
+        <span id='category-btn' class="menu-btn" (mouseover)="showMenuRow('category-row')">🗃️ Categories</span>
+        <span id='print-btn' class="menu-btn" (click)="printPages()"
+            title="Print 4x6 cards of the current category to a printer or a PDF file">🖨️ Print Cards</span>
+        <a id='home-btn' class="menu-btn" href="#" title="Back to Home">🏠 Home</a>
+    </p>
+
+    <!-- The category selections -->
+    <div class="category-box">
+        <table id='category-row' class="category">
+            @for (row of categoryRows; track row) {
+            <tr>
+                @for (category of row; track category) {
+                <td [id]="category.id" class="clickable">
+                    <img [src]="category.icon" class="category-icon" alt="categry.id">
+                    <span (click)="changeCategory(category)">{{category.chinese}} - {{category.id}}</span>
+                </td>
+                }
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<!-- The book cover for printing -->
+<div id="book-cover" class="book-cover mx-auto">
+    <!-- header (banner image) -->
+    <div class="cover-header">
+        <img src="assets/images/site/banner.jpg" alt="banner">
+        <div id='page-name' class="overlay-text">
+            <span id='cname' class='header-chinese'>{{pageFooter.chinese}}</span>
+            <span id='ename' class='header-english'> ({{pageFooter.english}})</span>
+        </div>
+    </div>
+    <div id='cover-body' class='row mt-4 p-3'>
+        <!-- two columns (50%, 50%)
+			right column: words to the kids.
+			left column: image of the grand parents and grand kids -->
+        <div class='col-sm-6 cover-chinese'>
+            <p>
+                亲爱的胡清，胡文思：
+            </p>
+            <p>
+                爷爷奶奶专门给你们编写了一套学中文的小册子《字儿》，希望你们能喜欢。这套小册子里有两百多个最常用的中国字，还有很多用这些字组成的词和句子。如果你们能用这套小册子很愉快地学到一些最基础的中文，那就是让爷爷奶奶和爸爸妈妈最高兴的事了。
+            </p>
+            <p>
+                爱你们的爷爷、奶奶
+            </p>
+        </div>
+        <div class='col-sm-5'>
+            <img id="cover-picture" class="cover-picture" src="assets/images/site/grandkids.jpg" alt="cover" />
+        </div>
+    </div>
+</div>
+
+<div id='contents' class="contents">
+@for(word of wordList; track word; let idx = $index) {
+    <div class="picture-row">
+        <div id='character-card' class="character-card">
+            <p>
+                <span id="char-{{idx}}" class='character'></span>
+            </p>
+            <p>
+                <span class='english'>{{word.english}}</span>
+            </p>
+        </div>
+
+        <div class="picture-card">
+            <p>
+                <img [src]="word.image" class="picture" alt="character" />
+            </p>
+        </div>
+    </div>
+
+    <!-- The word card for pinyin, phrases and sentence -->
+    <div id='word-card' class='word-card'>
+        <p>
+            <span class="chinese">{{word.chinese}}</span>&nbsp;
+            【<span class="pinyin">{{word.pinyin}}</span>】
+            <span style='margin-right:40px'></span>
+
+            <span class="phrase break-line">{{word.phrase[0]}}</span>
+            <span style='margin-right:40px'> </span>
+
+            <span class="sentence break-line">{{word.sentence}}</span>
+        </p>
+    </div>
+
+    <!-- This is the printing page footer -->
+    <div class='page-footer'>
+        <p id="page-footer">
+            {{pageFooter.chinese}} ( {{pageFooter.english}})
+        </p>
+    </div>
+} <!-- end of @for loop -->
+</div>
+
+<!-- This is for generating some image dynamically -->
+<canvas id="textCanvas" class="card-body no-show"></canvas>

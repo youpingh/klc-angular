@@ -1,0 +1,178 @@
+
+div.contents {
+	margin-top: 10px;
+	width: 98%;
+}
+
+div.picture-row {
+	align-items: stretch;
+}
+
+div.character-card {
+	float: left;
+	width: 46%;
+	margin-top: 10px;
+}
+
+div.picture-card {
+	float: left;
+	width: 44%;
+	margin-top: 20px;
+	padding-right: 20px;
+}
+
+div.word-card {
+	margin-top: 16px;
+	margin-left: 24px;
+}
+
+/* Clear floats after the columns */
+.picture-row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/** the contents styles */
+.character {
+	cursor: pointer;
+}
+
+.chinese {
+	font-family: KaiTi;
+	font-size: 32px;
+	color: darkgreen;
+	cursor: pointer;
+}
+
+.english {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 32px;
+	font-weight: bold;
+	margin-left: 64px;
+	color: darkgreen;
+}
+
+.pinyin {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 24px;
+	color: darkgreen;
+}
+
+.phrase {
+	font-family: KaiTi;
+	font-size: 32px;
+	color: darkblue;
+	cursor: pointer;
+}
+
+.sentence {
+	font-family: KaiTi;
+	font-size: 32px;
+	color: darkgreen;
+	cursor: pointer;
+}
+
+
+.picture {
+	width: 100%;
+	cursor: pointer;
+}
+
+.no-show {
+	display: none;
+}
+
+.break-line {
+	display: inline;
+}
+
+div.book-cover {
+	width: 100%;
+	padding: 8px 8px 10px 8px;
+	min-height: 140mm;
+}
+
+div.cover-header {
+	position: relative;
+	display: inline-block;
+}
+
+.cover-header img {
+	display: block;
+	width: 84%;
+	margin-left: 8px;
+	margin-top: 14px;
+}
+
+.overlay-text {
+	position: absolute;
+	bottom: -20px;
+	left: 700px;
+	transform: translate(-50%, -50%);
+	font-size: 32px;
+}
+
+.header-chinese {
+	font-family: SimSun;
+	font-size: 26px;
+}
+
+.header-english {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 24px;
+}
+
+div.cover-chinese {
+	width: 100%;
+	font-family: KaiTi;
+	font-size: 22px;
+	text-indent: 44px;
+}
+
+div.card-margin {
+	width: 75%;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.cover-english {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 20px;
+}
+
+img.cover-picture {
+	width: 68%;
+	margin-left: 60px;
+}
+
+@media print {
+	@page {
+		size: 6in 4in;
+		margin: 0;
+	}
+
+	/* Force new page */
+	.page-break {
+		break-before: page;
+	}
+
+	/** A character item */
+	.char-item {
+		overflow: hidden;
+	}
+
+	.book-cover {
+		background-color: antiquewhite !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.page-footer {
+		position: fixed;
+		bottom: 2px;
+		right: 40px;
+		font-family: SimSun;
+		font-size: 12px;
+	}
+}

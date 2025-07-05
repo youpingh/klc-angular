@@ -1,0 +1,22 @@
+# If you would like to upload your .git directory, .gitignore file or files
+# from your .gitignore file, remove the corresponding line
+# below:
+.git
+.gitignore
+
+# Python pycache:
+__pycache__/
+# Ignored by the build system
+/setup.cfg
+
+# Kids Learn Chinese project files/folders
+node_modules/
+src/
+e2e/
+*.md
+.angular/
+dist/*
+!dist/klc-angular/
+!dist/klc-angular/browser/
+!dist/klc-angular/browser/index.html
+!app.yaml
