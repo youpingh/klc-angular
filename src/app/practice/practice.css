@@ -132,17 +132,12 @@ div.speech-check-card {
 	cursor: pointer;
 }
 
-.error-message {
-	margin-top: 20px;
+/* .error-message {
+	margin-left: 16px;
 	font-family: 'Times New Roman', Times, serif;
 	font-size: 16px;
 	color: brown;
-	display: none;
-}
-
-.no-show {
-	display: none;
-}
+} */
 
 .break-line {
 	display: inline;

@@ -18,7 +18,7 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 
 	protected sttCheck: SpeechToTextCheck;
 	protected categoryRows: TocCategory[][];
-	errorMessage: string;
+	protected errorMessage: string;
 
 	constructor(
 		protected wordService: WordService,
@@ -28,7 +28,7 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 		this.errorMessage = '';
 		this.categoryRows = [];
 		this.sttCheck = new SpeechToTextCheck();
-		
+
 		/** create category list for the navigatable category list */
 		const categories = this.wordService.getCategories();
 		const columns = (this.wordService.isMobile() ? 4 : 5);
@@ -95,6 +95,10 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 		return this.errorMessage;
 	}
 
+	public hideError() {
+		this.errorMessage = '';
+	}
+
 	/**
 	 * Gets the english text of the current word
 	 * @returns 
@@ -154,31 +158,37 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 	/** Speaks English */
 	public speakEnglish(langCode: string) {
 		const text = this.getEnglish();
-		this.speaker.say(langCode, text);
+		this.say(langCode, text);
 	}
 
 	/** Speaks Chinese character */
 	public speakChinese(langCode: string) {
 		const text = this.getChinese();
-		this.speaker.say(langCode, text);
+		this.say(langCode, text);
 	}
 
 	/** Speaks Chinese phrase */
 	public speakPhrase1(langCode: string) {
 		const text = this.getPhrase1();
-		this.speaker.say(langCode, text);
+		this.say(langCode, text);
 	}
 
 	/** Speaks Chinese phrase */
 	public speakPhrase2(langCode: string) {
 		const text = this.getPhrase2();
-		this.speaker.say(langCode, text);
+		this.say(langCode, text);
 	}
 
 	/** Speaks Chinese sentence */
 	public speakSentence(langCode: string) {
 		const text = this.getSentence();
-		this.speaker.say(langCode, text);
+		this.say(langCode, text);
+	}
+
+	/** Speaks the text and catches the error message */
+	private async say(langCode: string, text: string) {
+		this.errorMessage = await this.speaker.say(langCode, text);
+		console.log('error:', this.getErrorMessage());
 	}
 
 	/**
@@ -193,10 +203,15 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 		// the sttCheck gets modified by speaker.recognizeSpeech() and calls detectChanges()
 		// to inform the GUI to show the speech-to-text result
 		this.speaker.recognizeSpeech(this.sttCheck, text, () => {
-			this.cdr.detectChanges(); // ✅ guaranteed to be after update
+			this.updateRecognization(); // ✅ guaranteed to be after update
 		});
 	}
 
+	private updateRecognization() {
+		this.setErrorMessage(this.sttCheck.error);
+		this.cdr.detectChanges()
+	}
+	
 	/**
 	 * Clears and hides the STT check section.
 	 */
@@ -213,6 +228,7 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 	 */
 	public initSpeechCheck() {
 		this.sttCheck.setRecording();
+		this.setErrorMessage('');
 		const sttCheck = this.sttCheckDiv.nativeElement;
 		const recognition = this.recognizationDiv.nativeElement;
 		sttCheck.style.display = 'block';

@@ -125,8 +125,4 @@ export class PracticeComponent extends PageContent implements OnInit {
 		}
 		this.sttCheck.setImage(greetingImageSrc);
 	}
-
-	public showError(message: string) { 
-		console.log(message);
-	}
 }

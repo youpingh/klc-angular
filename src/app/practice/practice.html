@@ -4,8 +4,8 @@
     <span id='category-btn' class="menu-btn" (mouseover)="showMenuRow('category-row')">🗃️ Categories</span>
     <span id='usage-btn' class="menu-btn" (mouseover)="showMenuRow('usage-row')" (mouseleave)="hideMenuRows()">🙋‍♂️
       Usage</span>
-    <a class="menu-btn" href="/character" title="Go to Character"><img src="assets/images/site/char.png"
-        height="16px" alt="character" /> Character</a>
+    <a class="menu-btn" href="/character" title="Go to Character"><img src="assets/images/site/char.png" height="16px"
+        alt="character" /> Character</a>
     <a class="menu-btn" href="#" title="Back to Home">🏠 Home</a>
   </p>
 
@@ -98,10 +98,11 @@
         <div #recognization id='recognization' class='speech-check-card sentence no-show'>
           <span id="input-text" class="sentence">{{ getSttText() }}</span><br>
           <span id="input-pinyin" class="pinyin">{{ getSttPinyin() }}</span>
-          <p id="rec-error" class='error-message'>{{ getSttError() }}</p>
-        </div>
-        <!-- This is for the error messages -->
-        <div id='error-message' class="error-message" (click)="showError('')" title="Click to hide the error message">
+          <!-- <p id="rec-error" class='error-message'>{{ getSttError() }}</p> -->
+          <!-- This is for the error messages -->
+          <div id='error-message' class="error-message" (click)="hideError()" title="Click to hide the error message">
+            {{getErrorMessage()}}
+          </div>
         </div>
       </div>
     </div>
@@ -110,7 +111,8 @@
   <!-- This element is for multiple choice selections (pictures) -->
   <div id='multi-choice' class="contents picture-row">
     @for (choice of imageChoices; track choice) {
-    <div [id]="choice.english" class="picture"><img class="picture-choice" [src]="choice.image" (click)="checkSelection(choice.english)" alt="choice"></div>
+    <div [id]="choice.english" class="picture"><img class="picture-choice" [src]="choice.image"
+        (click)="checkSelection(choice.english)" alt="choice"></div>
     }
   </div>
 

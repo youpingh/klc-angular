@@ -64,8 +64,9 @@
         <div id='picture-card' class="picture-card">
             <p>
                 <img #pictureDefault id='pictureDefault' [src]="getDefaultImage()" class="picture-default no-show"
-                    (click)="flipPicture()"  alt="default"/>
-                <img #picture id='picture' [src]="getCharImage()" class="picture no-show" (click)="flipPicture()" alt="char image"/>
+                    (click)="flipPicture()" alt="default" />
+                <img #picture id='picture' [src]="getCharImage()" class="picture no-show" (click)="flipPicture()"
+                    alt="char image" />
             </p>
         </div>
 
@@ -122,14 +123,13 @@
         <div #recognization id='recognization' class='speech-check-card sentence no-show'>
             <span id="input-text" class="sentence">{{ getSttText() }}</span><br>
             <span id="input-pinyin" class="pinyin">{{ getSttPinyin() }}</span>
-            <p id="rec-error" class='error-message'>{{ getSttError() }}</p>
+            <!-- This is for the error messages -->
+            <div id='error-message' class="error-message" (click)="hideError()" title="Click to hide the error message">
+                {{getErrorMessage()}}
+            </div>
         </div>
     </div>
 
-    <!-- This is for the error messages -->
-    <div id='error-message' class="error-message" onclick="Speaker.showError('')"
-        title="Click to hide the error message">{{getErrorMessage()}}
-    </div>
 
     <!-- The category selector for mobile -->
     <table id='mobile-category-row' class="category">
