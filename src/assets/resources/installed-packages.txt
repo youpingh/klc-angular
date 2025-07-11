@@ -1,3 +1,0 @@
-Angular additional packages:
-
-npm install hanzi-writer
