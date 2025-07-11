@@ -15,7 +15,7 @@ export class SpeakerService extends UtilsService {
 	private wordService: WordService = inject(WordService);
 
 	// static readonly PROXY_URL = 'http://127.0.0.1:8080/';
-	private readonly PROXY_URL = 'https://key-manager-462519.uc.r.appspot.com/';
+	private readonly PROXY_URL = 'https://learner-gateway.uc.r.appspot.com/';
 	private readonly TTS_URL = this.PROXY_URL + 'tts'; // Google
 	private readonly STT_URL = this.PROXY_URL + 'stt'; // Google
 	private readonly PINYIN_URL = this.PROXY_URL + 'pinyin'; // Google
