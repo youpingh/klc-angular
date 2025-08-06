@@ -41,3 +41,4 @@ Thumbs.db
 .editorconfig
 package-lock.json
 *.db
+src/assets/images/site/photothumb.db
