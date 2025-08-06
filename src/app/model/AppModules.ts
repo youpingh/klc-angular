@@ -74,7 +74,7 @@ export class SpeechToTextCheck {
     }
 
     public init() {
-        this.recordingImage = 'assets/images/greetings/talk-target.jpg';
+        this.recordingImage = 'assets/images/greetings/talk-recording.jpg';
         this.text = '';
         this.pinyin = '';
         this.error = '';

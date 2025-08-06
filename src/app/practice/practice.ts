@@ -36,7 +36,6 @@ export class PracticeComponent extends PageContent implements OnInit {
 	override ngAfterViewInit() {
 		super.ngAfterViewInit();
 		this.draw();
-		this.initSpeechCheck();
 	}
 
 	/**
@@ -46,8 +45,7 @@ export class PracticeComponent extends PageContent implements OnInit {
 	public override searchWord(): boolean {
 		const found = super.searchWord();
 		if (found) {
-			this.draw();
-			this.buildMultiChoices();
+			this.refreshPage();
 		}
 		return found;
 	}
@@ -68,8 +66,7 @@ export class PracticeComponent extends PageContent implements OnInit {
 		const fullCategory = this.wordService.getCategory(category.id);
 		if (fullCategory) {
 			this.wordService.setCurrentWord3(fullCategory.category, fullCategory.cname, fullCategory.words[0])
-			this.draw();
-			this.buildMultiChoices();
+			this.refreshPage();
 		}
 	}
 
@@ -78,8 +75,7 @@ export class PracticeComponent extends PageContent implements OnInit {
 	 */
 	public nextCharacter() {
 		this.wordService.setNextWord();
-		this.draw();
-		this.buildMultiChoices();
+		this.refreshPage();
 	}
 
 	/**
@@ -124,5 +120,14 @@ export class PracticeComponent extends PageContent implements OnInit {
 			greetingImageSrc = greetingImage.wrong;
 		}
 		this.sttCheck.setImage(greetingImageSrc);
+	}
+
+	/**
+	 * Refreshes the page with a new character.
+	 */
+	private refreshPage() {
+		this.clearSpeechCheck();
+		this.buildMultiChoices();
+		this.draw();
 	}
 }

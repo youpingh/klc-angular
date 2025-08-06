@@ -40,6 +40,7 @@ export abstract class PageContent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		this.addListener();
+		this.clearSpeechCheck();
 	}
 
 	/**

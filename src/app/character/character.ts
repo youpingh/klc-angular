@@ -51,9 +51,7 @@ export class CharacterComponent extends PageContent implements OnInit {
 		const fullCategory = this.wordService.getCategory(category.id);
 		if (fullCategory) {
 			this.wordService.setCurrentWord3(fullCategory.category, fullCategory.cname, fullCategory.words[0])
-			this.showDefaultImage();
-			this.createSidebar();
-			this.draw();
+			this.refreshPage();
 		}
 	}
 
@@ -64,9 +62,7 @@ export class CharacterComponent extends PageContent implements OnInit {
 	public override searchWord(): boolean {
 		const found = super.searchWord();
 		if (found) {
-			this.showDefaultImage();
-			this.createSidebar();
-			this.draw();
+			this.refreshPage();
 		}
 		return found;
 	}
@@ -95,9 +91,8 @@ export class CharacterComponent extends PageContent implements OnInit {
 	/** Changes the current word */
 	public changeWord(word: TocWord) {
 		this.wordService.findAndSetWord2(word.english, word.chinese);
-		this.showDefaultImage();
+		this.refreshPage();
 		this.toggleMenu();
-		this.draw();
 	}
 
 	/**
@@ -121,6 +116,16 @@ export class CharacterComponent extends PageContent implements OnInit {
 	 */
 	public getDefaultImage() {
 		return this.painter.getDefaultImage();
+	}
+
+	/**
+	 * Refreshes the page with a new character.
+	 */
+	private refreshPage() {
+		this.showDefaultImage();
+		this.createSidebar();
+		this.clearSpeechCheck();
+		this.draw();
 	}
 
 	/**
