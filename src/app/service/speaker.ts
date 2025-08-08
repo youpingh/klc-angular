@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { WordService } from '../service/words';
 import { SpeechToTextCheck, Pinyin } from '../model/AppModules';
 import { UtilsService } from '../service/utils';
+import { ServiceURLs } from '../model/AppProperties';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,12 +14,6 @@ import { UtilsService } from '../service/utils';
 export class SpeakerService extends UtilsService {
 
 	private wordService: WordService = inject(WordService);
-
-	// static readonly PROXY_URL = 'http://127.0.0.1:8080/';
-	private readonly PROXY_URL = 'https://learner-gateway.uc.r.appspot.com/';
-	private readonly TTS_URL = this.PROXY_URL + 'tts'; // Google
-	private readonly STT_URL = this.PROXY_URL + 'stt'; // Google
-	private readonly PINYIN_URL = this.PROXY_URL + 'pinyin'; // Google
 
 	/**
 	 * Uses Google's text to speech service to say the specified text.
@@ -60,7 +55,7 @@ export class SpeakerService extends UtilsService {
 		};
 
 		try {
-			const response = await fetch(this.TTS_URL, {
+			const response = await fetch(ServiceURLs.tts, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -135,7 +130,7 @@ export class SpeakerService extends UtilsService {
 				formData.append('file', audioBlob, 'audio.webm');
 				// formData.append('language', 'zh'); // optional but helpful
 				try {
-					const response = await fetch(this.STT_URL, {
+					const response = await fetch(ServiceURLs.stt, {
 						method: "POST",
 						body: formData
 					});
@@ -189,7 +184,7 @@ export class SpeakerService extends UtilsService {
 		}
 
 		try {
-			const response = await fetch(this.PINYIN_URL, {
+			const response = await fetch(ServiceURLs.pinyin, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

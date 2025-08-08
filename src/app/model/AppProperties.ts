@@ -1,33 +1,29 @@
-/** A list of application properties. All the timer properties are in seconds */
-export const AppProperty = {
-    metaTitleSuffix: "- Chinese School - Denver Colorado",
-    contentLocation: "assets/content/",
-    imageLocation: "assets/images/",
-    slideShowTimerInteval: 8,
-    slideShowTimerDelay: 8
+
+/**
+ * The firebase configuration. the apiKey is an id of the project, not a securit key, 
+ * so it's okay to check in the code.
+ */
+export const FirebaseConfig = {
+    apiKey: "AIzaSyClRfxf9Fa6vtgWZnvUJFiZTDYoOZlzzW0",
+    authDomain: "pingeter-blogger.firebaseapp.com",
+    projectId: "pingeter-blogger",
+    storageBucket: "pingeter-blogger.firebasestorage.app",
+    messagingSenderId: "1041397028813",
+    appId: "1:1041397028813:web:ee065d4499b7a522091684",
+    measurementId: "G-SV3PZ23CTE"
 }
 
-/** The button titles for the navagition buttons */
-export const ButtonTitle = {
-    home: '主页',
-    sitemap: 'Sitemap',
-    contact: '和我们联系',
-    about: '关于长城中文学校',
-    events: '学校活动',
-    academics: '学业',
-    registration: '注册',
-    resources: '资源',
-    story: '学校的故事',
-    clips: '学校视频',
-    studentWork: '学生作品',
-    yearbook: '校刊',
-    cny: '春节',
-    dragonBoat: '赛龙舟',
-    gotTalent: '达人秀',
-    news: '新闻',
-    youtube: ' GWCA Youtube Channel',
-    facebook: 'GWCA Facebook Page',
-    twitter: 'GWCA Twitter Page',
-    community: '社区成员',
-    firstbank: 'First Bank'
+/**
+ * The proxy service URL.
+ */
+export const PROXY_SERVER = 'https://learner-gateway.uc.r.appspot.com/';
+// export const PROXY_SERVER = 'http://127.0.0.1:8080/';
+
+/**
+ * Service URLs (all from Google)
+ */
+export const ServiceURLs = {
+	tts: PROXY_SERVER + 'tts',
+	stt: PROXY_SERVER + 'stt',
+	pinyin: PROXY_SERVER + 'pinyin'
 }
