@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { WordService } from '../service/words';
 import { SpeechToTextCheck, Pinyin } from '../model/AppModules';
 import { UtilsService } from '../service/utils';
-import { ServiceURLs } from '../model/AppProperties';
+import { environment } from '../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -55,7 +55,7 @@ export class SpeakerService extends UtilsService {
 		};
 
 		try {
-			const response = await fetch(ServiceURLs.tts, {
+			const response = await fetch(environment.services.tts, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ export class SpeakerService extends UtilsService {
 				formData.append('file', audioBlob, 'audio.webm');
 				// formData.append('language', 'zh'); // optional but helpful
 				try {
-					const response = await fetch(ServiceURLs.stt, {
+					const response = await fetch(environment.services.stt, {
 						method: "POST",
 						body: formData
 					});
@@ -184,7 +184,7 @@ export class SpeakerService extends UtilsService {
 		}
 
 		try {
-			const response = await fetch(ServiceURLs.pinyin, {
+			const response = await fetch(environment.services.pinyin, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
